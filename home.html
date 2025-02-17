@@ -8,11 +8,11 @@
     <script src="./auth.js" defer type="module"></script>
     <script>
         function openpage() {
+            // location.href = "./section.html";
             setTimeout(() => {
                 location.href = "./navs.html";
             }, 2000);
         }
-
     </script>
     <style>
         /* General Styles */
@@ -159,7 +159,6 @@
         <input id="mails" type="email"><br>
         <label for="passwd"> <img id="img-pass" src="./password-svgrepo-com.svg" alt=""> enter your password</label>
         <input id="passwd" type="password"><br>
-        <button onclick="openpage()" style="cursor: pointer;">as a guest</button>
 
         <input type="submit">
     </form>
@@ -173,7 +172,6 @@
         <label for="spasswd"> enter your password</label>
         <input id="spasswd" type="password"><br>
         <br>
-        <button onclick="openpage()" style="cursor: pointer;">as a guest</button>
         <input type="submit">
 
 
@@ -181,6 +179,7 @@
     <!-- <br> -->
     <!-- <br> -->
     <button style="display: none;" id="regi">register here</button>
+    <button  onclick="openpage()" style="cursor: pointer;">as a guest</button>
 </body>
 
 </html>

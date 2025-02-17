@@ -174,7 +174,8 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         flex-shrink: 0;
     }
-    .forming{
+
+    .forming {
         display: flex;
         justify-content: center;
 
@@ -182,42 +183,54 @@
 
 
     .form-container {
-            background: linear-gradient(to right, #7009ba, #ddd);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            width: 500px;
-        }
-        h2 {
-            text-align: center;
-            color: #fff;
-        }
-        label {
-            font-weight: bold;
-            color: #fff;
-        }
-        input, select, textarea {
-            width: 100%;
-            padding: 10px;
-            margin: 8px 0;
-            border-radius: 5px;
-            border: none;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            background: linear-gradient(to right, #ff7e5f, #feb47b);
-            border: none;
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background: linear-gradient(to right, #feb47b, #ff7e5f);
-        }
+        background: linear-gradient(to right, #7009ba, #ddd);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        width: 500px;
+    }
+
+    h2 {
+        text-align: center;
+        color: #fff;
+    }
+
+    label {
+        font-weight: bold;
+        color: #fff;
+    }
+
+    input,
+    select,
+    textarea {
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0;
+        border-radius: 5px;
+        border: none;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        background: linear-gradient(to right, #ff7e5f, #feb47b);
+        border: none;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: linear-gradient(to right, #feb47b, #ff7e5f);
+    }
 </style>
+<script>
+    function events(){
+        location.replace("./cards.html")
+    }
+</script>
 
 <body>
     <nav class="navbar">
@@ -226,7 +239,7 @@
             <li><a href="#">Home</a></li>
             <li><a href="#">About</a></li>
             <li class="dropdown">
-                <a href="#">Events</a>
+                <a href="#" onclick="events()">Events</a>
                 <ul class="dropdown-menu">
                     <li><a href="#">My events</a></li>
                     <li><a href="#">Ongoing</a></li>
@@ -281,47 +294,47 @@
         </div>
     </div>
 
-<div class="forming">
+    <div class="forming">
 
-    <div class="form-container">
-        <h2>Event Registration</h2>
-        <form>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
+        <div class="form-container">
+            <h2>Event Registration</h2>
+            <form id="eventForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
 
-            <label for="people">Number of People:</label>
-            <select id="people" name="people" required>
-                <option value="">Select</option>
-                <script>
-                    for (let i = 1; i <= 10000; i = i + 1000) {
-                        document.write(`<option value="${i}">${i}</option>`);
-                    }
-                </script>
-            </select>
+                <label for="people">Number of People:</label>
+                <select id="people" name="people" required>
+                    <option value="">Select</option>
+                    <script>
+                        for (let i = 1; i <= 10000; i = i + 1000) {
+                            document.write(`<option value="${i}">${i}</option>`);
+                        }
+                    </script>
+                </select>
 
-            <label for="email">Gmail:</label>
-            <input type="email" id="email" name="email" required>
+                <label for="email">Gmail:</label>
+                <input type="email" id="email" name="email" required>
 
-            <label for="location">Location:</label>
-            <input type="text" id="location" name="location" required>
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location" required>
 
-            <label for="phone">Phone Number:</label>
-            <input type="tel" id="phone" name="phone" required>
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
 
-            <label for="budget">Event Budget:</label>
-            <input type="number" id="budget" name="budget" required>
+                <label for="budget">Event Budget:</label>
+                <input type="number" id="budget" name="budget" required>
 
-            <label for="entry_fee">Entry Fee:</label>
-            <input type="number" id="entry_fee" name="entry_fee" required>
+                <label for="entry_fee">Entry Fee:</label>
+                <input type="number" id="entry_fee" name="entry_fee" required>
 
-            <label for="details">Basic Details:</label>
-            <textarea id="details" name="details" rows="4" required></textarea>
+                <label for="details">Basic Details:</label>
+                <textarea id="details" name="details" rows="4" required></textarea>
 
-            <button type="submit">Submit</button>
-        </form>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
     </div>
-
-</div>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
@@ -349,32 +362,40 @@
 
 
         document.getElementById("eventForm").addEventListener("submit", async function (event) {
-            event.preventDefault();
-            const formData = new FormData(this);
-            const data = {};
-            formData.forEach((value, key) => {
-                data[key] = value;
-            });
+            event.preventDefault(); // Prevent page reload on form submission
+
+            // Collect form data
+            const formData = {
+                name: document.getElementById("name").value,
+                people: document.getElementById("people").value,
+                email: document.getElementById("email").value,
+                location: document.getElementById("location").value,
+                phone: document.getElementById("phone").value,
+                budget: document.getElementById("budget").value,
+                entry_fee: document.getElementById("entry_fee").value,
+                details: document.getElementById("details").value
+            };
 
             try {
-                const response = await fetch("http://localhost:5000/api", {
+                // Send POST request to API
+                const response = await fetch("https://679bb4a333d316846324d7a8.mockapi.io/crickers", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify(data)
+                    body: JSON.stringify(formData)
                 });
 
                 if (response.ok) {
-                    const result = await response.json();
+                    const data = await response.json();
                     alert("Form submitted successfully!");
-                    console.log(result);
+                    console.log("Response:", data);
                 } else {
-                    throw new Error("Failed to submit form");
+                    alert("Error submitting form. Please try again.");
                 }
             } catch (error) {
-                console.error(error);
-                alert("Error submitting form");
+                console.error("Error:", error);
+                alert("Something went wrong. Please try again later.");
             }
         });
     </script>
